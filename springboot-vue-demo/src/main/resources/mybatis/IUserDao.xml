@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.user.IUserDao">
+    <select id="getRowCount" resultType="Integer">
+		select count(*) from users
+	</select>
+
+	<select id="findAll" resultType="com.example.demo.user.User">
+        select * from users
+    </select>
+
+    <delete id="delete">
+        delete from users where id = #{id}
+    </delete>
+
+    <select id="queryPage" resultType="java.util.LinkedHashMap" parameterType="Integer">
+		select id,name,age,sex,address from users order by id desc
+			limit #{startRows},#{size}
+	</select>
+
+    <select id="findByName" resultType="com.example.demo.user.User">
+        select * from users where name like concat(concat('%',#{name}),'%') order by id desc
+    </select>
+
+    <select id="findById" resultType="com.example.demo.user.User">
+        select * from users where id = #{id}
+    </select>
+
+    <insert id="add" parameterType="com.example.demo.user.User">
+        INSERT INTO
+          `users`(`name`,`age`,`sex`,`address`)
+        VALUES
+          (#{name},#{age},#{sex},#{address})
+    </insert>
+
+    <update id="update" parameterType="com.example.demo.user.User">
+        update users
+        set name=#{name},age=#{age},sex=#{sex},address=#{address}
+        where id=#{id}
+    </update>
+</mapper>

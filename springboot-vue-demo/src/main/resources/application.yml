@@ -1,0 +1,12 @@
+server:
+  port : 8888
+
+spring:
+  datasource:
+    name : testvue
+    url : jdbc:mysql://127.0.0.1:3306/testvue?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
+    username : root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+  mapper-locations: classpath:mybatis/*.xml
